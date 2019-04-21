@@ -16,7 +16,7 @@ The GDELT dataset provides data on historic and current events. It classifies th
 
 ## Architecture
 ![architecture](./architecture.png)
-S3, Python, Kafka, Spark-Streaming, PostgreSQL, Flask
+S3, Python, Spark, PostgreSQL, Flask
 
 ## Dataset
 Global Database of Events, Language, and Tone (GDELT) project - a realtime database of global society. Over 2.5TB for last year alone. 
@@ -26,12 +26,9 @@ three datasets:
     •Global Knowledge Graph
 ## Engineering challenges
 1) Understand Source files Data
-2) Source files schema changes over times
-    each CSV as an Apache Parquet file which makes data processing in Spark faster
-3) Retrieving the data from the database and show in the google map UI is slow
-    Still investigating
-4) Debuggability
-    Planning using Airflow to help with debuggability and store error logs on s3 for each process
+2) how to efficiently store and fast processing the files
+3) Source files schema changes over times
+4) Debuggability, using Airflow to help with debuggability
 
 ## Trade-offs
 
