@@ -2,8 +2,6 @@
 '''
 Sript to download gdelt data and save to s3.
 '''
-# pickle.dump(gkg_columns, open('~/gdelt_distributed_architecture/data/interim/gkg_columns.pkl', 'wb'))
-# Import Dependencies
 from __future__ import print_function
 from __future__ import unicode_literals
 import os
@@ -144,28 +142,11 @@ def make_gdelt_dataframe(csv_path):
     '''
     if re.search(r'gkg', csv_path):
         columns = pickle.load(open('./gkg_columns.pkl', 'rb'))
-        # columns = pickle.load(open(os.path.join(unzip_filepath,
-        #                                         'gkg_columns.pkl'
-        #                                         ),
-        #                            'rb')
-        #                       )
     elif re.search(r'export', csv_path):
         columns = pickle.load(open('./events_columns.pkl', 'rb'))
 
-        # columns = pickle.load(open(os.path.join(unzip_filepath,
-        #                                         'events_columns.pkl'
-        #                                         ),
-        #                            'rb')
-        #                       )
-
     elif re.search(r'mentions', csv_path):
         columns = pickle.load(open('./mentions_columns.pkl', 'rb'))
-
-        # columns = pickle.load(open(os.path.join(unzip_filepath,
-        #                                         'mentions_columns.pkl'
-        #                                         ),
-        #                            'rb')
-        #                       )
     else:
         return 'NOT A VALID GDELT FILE'
 
@@ -195,22 +176,14 @@ def csv_to_parquet(file_path, output_path):
         fastparquet.write(output_filepath, df, compression='GZIP')
         return output_filepath
 
-# def parquet_to_s3(parquet_path):
-#     pf = fastparquet.ParquetFile(parquet_path)
-#     # Setup firehose connection
-#     firehose = boto3.client('firehose', region_name='us-west-2')
-#     firehose.put_record(DeliveryStreamName='gdelt-firehose',\
-#     Record={'Data': pf})
-def log_filename_to_SQL(file_name):
+def log_filename_to_SQL(connection,file_name):
     #connect to db 
-    connection = psycopg2.connect(host = db_config['host'], database = db_config['database'], user = db_config['username'], password = db_config['password'])
     cursor = connection.cursor()
     cursor.execute("insert into log_filename(file_name,Isdownloaded,Isprocessed) values ('{}',1,0)".format(file_name))
     connection.commit()
 
 def upload_file_to_s3(csv_path):
     print('\n\nUPLOADING {} TO S3'.format(csv_path))
-    #s3 = boto.connect_s3()
     if re.search(r'gkg', csv_path):
         bucket_name = 'gdelt-streaming'
     elif re.search(r'export', csv_path):
@@ -253,8 +226,8 @@ def upload_file_to_s3(csv_path):
         key.set_contents_from_filename(csv_path)
 
         print('{} UPLOAD SUCCESSFUL'.format(key_name))
-        log_filename_to_SQL(key_name)
-        #time.sleep(300)
+        log_filename_to_SQL(connection,key_name)
+
 
 def get_most_recent_files_to_s3(download_filepath, unzip_filepath,parquet_filepath):
     gdelt_last_15 = requests.get('http://data.gdeltproject.org/gdeltv2/lastupdate.txt').text
@@ -269,10 +242,7 @@ def get_most_recent_files_to_s3(download_filepath, unzip_filepath,parquet_filepa
                                     os.path.join(download_filepath,
                                                  os.path.basename(f)))
 
-        # df = make_gdelt_dataframe(os.path.join(f_unzip_path))
-
         parquet_path = csv_to_parquet(f_unzip_path, parquet_filepath)
-        # parquet_to_s3(parquet_path)
         upload_file_to_s3(parquet_path)
         delete_data_after_s3_upload()
 
@@ -289,54 +259,18 @@ def delete_data_after_s3_upload():
             os.remove(os.path.join(p, f))
 
 if __name__ == '__main__':
-    '''
-    log = logging.getLogger(__name__)
-    if len(log.handlers) == 0:
-        hdlr = logging.FileHandler('get_gdelt_data.log')
-        formatter = logging.Formatter('[%(asctime)s] p%(process)s {%(pathname)s:%(lineno)d} %(levelname)s - %(message)s','%m-%d %H:%M:%S')
-        hdlr.setFormatter(formatter)
-        log.addHandler(hdlr)
-        log.setLevel(logging.INFO)
-    log.info("started")
-    '''
-    PROJ_ROOT = '.'#/Users/xinhuishi/Downloads/'
-    #PROJ_ROOT = os.path.join(os.pardir, os.pardir)
+
+    PROJ_ROOT = '.'
     download_filepath = os.path.join(PROJ_ROOT, 'data/raw')
     unzip_filepath = os.path.join(PROJ_ROOT, 'data/interim')
     parquet_filepath = os.path.join(PROJ_ROOT, 'data/parquet')
      
     AWS_ACCESS_KEY = aws_config['AWS_ACCESS_KEY']
     AWS_SECRET_ACCESS_KEY = aws_config['AWS_SECRET_ACCESS_KEY']
-
-    # host = 's3-us-west-2.amazonaws.com'
+    connection = psycopg2.connect(host = db_config['host'], database = db_config['database'], user = db_config['username'], password = db_config['password'])
+    
     s3 = boto.connect_s3(AWS_ACCESS_KEY, AWS_SECRET_ACCESS_KEY)
-    # url_list = get_list_of_urls()
-    '''
-    gkg_url = 'http://data.gdeltproject.org/gdeltv2/20190330004500.gkg.csv.zip'
-    # download_zip_in_chunks(download_filepath, gkg_url)
-    gkg_unzip_path = unzip_file(unzip_filepath,
-                                os.path.join(download_filepath,
-                                             os.path.basename(gkg_url)
-                                             )
-                                )
-    
-    mentions_url = 'http://data.gdeltproject.org/gdeltv2/20190330004500.mentions.CSV.zip'
-    # download_zip_in_chunks(download_filepath, mentions_url)
-    mentions_unzip_path = unzip_file(unzip_filepath,
-                                     os.path.join(download_filepath,
-                                                  os.path.basename(mentions_url)
-                                                  )
-                                     ) 
-    
-    events_url = 'http://data.gdeltproject.org/gdeltv2/20190330004500.export.CSV.zip'
-    # download_zip_in_chunks(download_filepath, events_url)
-    events_unzip_path = unzip_file(unzip_filepath,
-                                     os.path.join(download_filepath,
-                                                  os.path.basename(events_url)
-                                                  )
-                                    )
 
-    '''
     gkg_columns = ['GKGRECORDID', 'DATE', 'SourceCollectionIdentifier',
               'SourceCommonName', 'DocumentIdentifier', 'Counts',
               'V2Counts', 'Themes', 'V2Themes', 'Locations',
@@ -383,42 +317,7 @@ if __name__ == '__main__':
     pickle.dump(events_columns, open('./events_columns.pkl', 'wb'))
 
     pickle.dump(mentions_columns, open('./mentions_columns.pkl', 'wb'))
-   
-# make_gdelt_dataframe(csv_path)
-# csv_to_parquet(file_path, output_path)
-# parquet_to_s3(parquet_path)
-# upload_file_to_s3(csv_path)
 
-    # gkg = make_gdelt_dataframe(gkg_unzip_path)
-    # events = make_gdelt_dataframe(events_unzip_path)
-    # mentions = make_gdelt_dataframe(mentions_unzip_path)
-    '''
-    gkg_parquet_filepath = csv_to_parquet(gkg_unzip_path,parquet_filepath)
-    events_parquet_filepath = csv_to_parquet(events_unzip_path,parquet_filepath)
-    mentions_parquet_filepath = csv_to_parquet(mentions_unzip_path,parquet_filepath)
-    
-    # parquet_to_s3(gkg_parquet_path)
-    # parquet_to_s3(events_parquet_path)
-    # parquet_to_s3(mentions_parquet_path)
-    upload_file_to_s3(gkg_parquet_filepath)
-    upload_file_to_s3(events_parquet_filepath)
-    upload_file_to_s3(mentions_parquet_filepath)
-    # download_zip_in_chunks(download_filepath, f)
-
-    #     f_unzip_path = unzip_file(unzip_filepath,
-    #                                 os.path.join(download_filepath,
-    #                                              os.path.basename(f)))
-
-    #     # df = make_gdelt_dataframe(os.path.join(f_unzip_path))
-
-    #     parquet_path = csv_to_parquet(f_unzip_path, parquet_filepath)
-    #     parquet_to_s3(parquet_path)
-    #     upload_file_to_s3(parquet_path)
-
-   
-        # log.info("started")
-        # print('BEGINNING UPLOAD ########### {}'.format(datetime.datetime.now()))
-    '''
     get_most_recent_files_to_s3(download_filepath, unzip_filepath,parquet_filepath)
     print('Done!')
-    # time.sleep(2)
+

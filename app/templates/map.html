@@ -1,0 +1,464 @@
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<title>Google Maps - pygmaps </title>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true_or_false&key=AIzaSyAHfjtNBSH5PvIwCNLY9-I88NRXUQZgouw"></script>
+<script type="text/javascript">
+	function initialize() {
+		var centerlatlng = new google.maps.LatLng(32.788434, -30.803362);
+		var myOptions = {
+			zoom: 3,
+			center: centerlatlng,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+var heatmap_points = [
+new google.maps.LatLng(38.000000, -97.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 4);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(38.000000, -97.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 10);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(38.000000, -97.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 10);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(-26.500000, 31.500000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 3);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(25.000000, 45.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 1);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(44.000000, 21.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 1);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(44.000000, 21.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 10);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(0, 250, 0, 0)',
+	'rgba(0, 250, 0, 1)',
+	'rgba(0, 250, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(-41.000000, 174.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 6);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(13.000000, -85.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 10);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(13.000000, -85.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 4);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(0, 250, 0, 0)',
+	'rgba(0, 250, 0, 1)',
+	'rgba(0, 250, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(2.500000, 112.500000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 10);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(0, 250, 0, 0)',
+	'rgba(0, 250, 0, 1)',
+	'rgba(0, 250, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(2.500000, 112.500000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 5);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(35.833300, 14.583300),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 8);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(22.166700, 113.550000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 8);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(25.000000, 17.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 3);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(1.000000, 38.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 10);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(31.000000, 36.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 5);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(0, 250, 0, 0)',
+	'rgba(0, 250, 0, 1)',
+	'rgba(0, 250, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(49.210000, -2.130000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 1);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(0, 250, 0, 0)',
+	'rgba(0, 250, 0, 1)',
+	'rgba(0, 250, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(42.833300, 12.833300),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 10);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(20.000000, 77.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 10);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+var heatmap_points = [
+new google.maps.LatLng(20.000000, 77.000000),
+];
+
+var pointArray = new google.maps.MVCArray(heatmap_points);
+var heatmap;
+heatmap = new google.maps.visualization.HeatmapLayer({
+
+data: pointArray
+});
+heatmap.setMap(map);
+heatmap.set('threshold', 4);
+heatmap.set('radius', 10);
+heatmap.set('opacity', 0.600000);
+heatmap.set('dissipating', false);
+var gradient = [
+	'rgba(250, 0, 0, 0)',
+	'rgba(250, 0, 0, 1)',
+	'rgba(250, 0, 0, 1)',
+];
+heatmap.set('gradient', gradient);
+	}
+</script>
+</head>
+<body style="margin:0px; padding:0px;" onload="initialize()">
+	<div id="map_canvas" style="width: 100%; height: 100%;"></div>
+</body>
+</html>

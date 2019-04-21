@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}" />
+<div class="home-block">
+  <div>
+    <h1>Please select a category:</h1>
+    <form action="/map" method="GET">
+      <select name="category" id="category">
+        {% for category in categories %}
+            <option value={{category}}>
+                {{category}}
+            </option>
+        {% endfor %}
+      </select>
+      <br />
+      <br />
+      <input type="submit" value="Submit" id="submit"/>
+    </form>
+  </div>
+</div>
+{% endblock %}
