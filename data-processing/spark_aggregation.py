@@ -49,8 +49,8 @@ def getTopTenEvents (t):
             categoryTopEventsMap[category].append(event_map)
             urlCategoryToEventMap[(url, category)] = event_map
         categoryTopEventsMap[category] = sorted(categoryTopEventsMap[category], key=lambda event_map: event_map['numMentions'], reverse=True)
-        # if (len(categoryTopEventsMap[category]) > 10):
-        #     categoryTopEventsMap[category].pop()
+        if (len(categoryTopEventsMap[category]) > 10):
+            categoryTopEventsMap[category].pop()
     return (t[0], t[1], categoryTopEventsMap)
 
 def aggregateScores (t):
