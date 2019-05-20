@@ -109,7 +109,7 @@ def send_event_to_SQL(rdd,connection,table_name,column_name, file_date):
             connection.commit()
 
 def processDataForTimePeriod(master_event_today,file_date):
-    timePeriodCassandraRDD = master_event_today.rdd \
+    timePeriodRDD = master_event_today.rdd \
             .map(lambda a: ( \
                 (a["country"], a["date"]),
                 (
@@ -124,7 +124,7 @@ def processDataForTimePeriod(master_event_today,file_date):
  
     table_name ='public.category_events'
     column_name ='country,cyear,actor_type,numMentions,mention_source,event_id,gs,tone,file_date,page_title,page_description,page_image_url'
-    send_event_to_SQL(timePeriodCassandraRDD,connection,table_name,column_name,file_date)
+    send_event_to_SQL(timePeriodRDD,connection,table_name,column_name,file_date)
 
 def parse_url(url):   
     page = {
