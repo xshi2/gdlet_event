@@ -17,7 +17,7 @@ from entity_codes import category_names
 #connect to db and get unprocessed files
 def get_unprocessed_files_from_DB(connection):
     cursor = connection.cursor()
-    query = "SELECT distinct file_name FROM log_filename WHERE Isdownloaded = 1 AND Isprocessed =0 AND file_name LIKE '%export%' AND file_name not LIKE '%2018%'"
+    query = "SELECT distinct file_name FROM log_filename WHERE Isdownloaded = 1 AND Isprocessed =0 AND file_name LIKE '%export%'"
     cursor.execute(query)
     results = cursor.fetchall()
     filenames =[]
